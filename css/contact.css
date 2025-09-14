@@ -1,13 +1,13 @@
 :root {
-  --bg: #1e1f23;
-  --bg-alt: #2a2b30;
-  --text: #e4e4e6;
-  --accent: #10a37f;
-  --card: #2e2f35;
-  --border: #444;
+  --bg: white;
+  --bg-alt: white;;
+  --text: black;
+  --accent: #dfae2a;
+  --card: #ffffff;
+  --border: #d8d8d8;
   --transition-speed: 0.3s;
-  --shadow-accent: rgba(16, 163, 127, 0.5);
 }
+
 
 * {
   box-sizing: border-box;
@@ -18,7 +18,7 @@
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   line-height: 1.6;
   min-height: 100vh;
   display: flex;
@@ -45,17 +45,17 @@ a:focus {
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .header-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .branding {
@@ -64,23 +64,22 @@ a:focus {
 }
 
 .branding img {
-  height: 44px;
-  margin-right: 0.75rem;
-  filter: drop-shadow(0 0 2px var(--accent));
+  height: 40px;
+  margin-right: 0.5rem;
 }
 
 .site-title {
-  font-size: 1.75rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 600;
   color: var(--text);
-  letter-spacing: 1.5px;
 }
 
+/* Navigation */
 .nav a {
-  margin-left: 1.2rem;
-  font-weight: 600;
-  padding: 0.5rem 0.8rem;
-  border-radius: 6px;
+  margin-left: 1rem;
+  font-weight: 500;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
   transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
@@ -90,7 +89,60 @@ a:focus {
   color: #fff;
   background-color: var(--accent);
   outline: none;
-  box-shadow: 0 0 8px var(--shadow-accent);
+}
+
+/* Hamburger button (hidden on desktop) */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  position: relative;
+  z-index: 150;
+}
+
+/* Hamburger lines */
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  display: block;
+  background-color: var(--accent);
+  height: 3px;
+  width: 25px;
+  border-radius: 2px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.hamburger::before {
+  top: -8px;
+}
+
+.hamburger::after {
+  top: 8px;
+}
+
+/* Hamburger animation for toggle button */
+.nav-toggle.open .hamburger {
+  background-color: transparent;
+}
+
+.nav-toggle.open .hamburger::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.nav-toggle.open .hamburger::after {
+  transform: rotate(-45deg);
+  top: 0;
 }
 
 /* ==== Main Container ==== */
@@ -114,7 +166,7 @@ h2 {
   font-weight: 700;
 }
 
-/* ==== Intro paragraph ==== */
+/* Intro paragraph */
 .container p {
   font-size: 1.1rem;
   margin-bottom: 2.5rem;
@@ -126,7 +178,7 @@ h2 {
   margin-right: auto;
 }
 
-/* ==== Form styles ==== */
+/* Form styles */
 form label {
   display: block;
   margin-bottom: 1.25rem;
@@ -159,11 +211,11 @@ form textarea:focus {
 
 form textarea {
   min-height: 140px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   line-height: 1.4;
 }
 
-/* ==== Button ==== */
+/* Button */
 button {
   background: var(--accent);
   color: #fff;
@@ -188,7 +240,7 @@ button:focus {
   outline: none;
 }
 
-/* ==== Footer ==== */
+/* Footer */
 .site-footer {
   text-align: center;
   padding: 2.5rem 1rem;
@@ -201,24 +253,45 @@ button:focus {
 }
 
 /* ==== Responsive ==== */
-@media (max-width: 600px) {
-  .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
+@media (max-width: 768px) {
+  /* Show hamburger */
+  .nav-toggle {
+    display: block;
   }
 
+  /* Hide nav by default on mobile */
   .nav {
-    margin-top: 1rem;
+    position: absolute;
+    top: 60px; /* height of header */
+    right: 1rem;
+    background: var(--bg-alt);
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+    flex-direction: column;
+    display: none;
+    width: 200px;
+    z-index: 120;
+  }
+
+  /* Show nav when open */
+  .nav.open {
+    display: flex;
   }
 
   .nav a {
-    display: inline-block;
-    margin: 0.3rem 0.6rem 0.3rem 0;
+    margin: 0;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
   }
 
-  .container {
-    max-width: 90%;
-    margin: 3rem auto 5rem auto;
-    padding: 1.5rem 1rem 3rem 1rem;
+  .nav a:last-child {
+    border-bottom: none;
+  }
+
+  /* Stack header items vertically */
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
   }
 }

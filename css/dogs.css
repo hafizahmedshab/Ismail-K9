@@ -1,10 +1,11 @@
 :root {
-  --bg: #1e1f23;
-  --bg-alt: #2a2b30;
-  --text: #e4e4e6;
-  --accent: #10a37f;
-  --card: #2e2f35;
-  --border: #444;
+  --bg: white;
+  --bg-alt: white;;
+  --text: black;
+  --accent: #dfae2a;
+  --card: #ffffff;
+  --border: #d8d8d8;
+  --transition-speed: 0.3s;
 }
 
 * {
@@ -27,19 +28,6 @@ a {
   text-decoration: none;
 }
 
-h1,
-h2 {
-  color: #fff;
-  margin-bottom: 0.75rem;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
-}
-
-.container {
-  max-width: 1100px;
-  margin: 3rem auto;
-  padding: 0 1rem;
-}
-
 /* ==== Header ==== */
 .site-header {
   background-color: var(--bg-alt);
@@ -58,6 +46,7 @@ h2 {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .branding {
@@ -76,6 +65,12 @@ h2 {
   color: var(--text);
 }
 
+/* Navigation */
+.nav {
+  display: flex;
+  align-items: center;
+}
+
 .nav a {
   margin-left: 1rem;
   font-weight: 500;
@@ -92,7 +87,46 @@ h2 {
   outline: none;
 }
 
-/* Hero */
+/* Hamburger button (hidden on desktop) */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  position: relative;
+  z-index: 150;
+}
+
+/* Hamburger lines */
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  display: block;
+  background-color: var(--accent);
+  height: 3px;
+  width: 25px;
+  border-radius: 2px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.hamburger::before {
+  top: -8px;
+}
+
+.hamburger::after {
+  top: 8px;
+}
+
+/* ==== Hero ==== */
 .hero {
   position: relative;
   height: 50vh;
@@ -101,7 +135,7 @@ h2 {
   border-radius: 12px;
 }
 
-.hero img {
+.hero-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -109,11 +143,11 @@ h2 {
   transition: transform 0.5s ease;
 }
 
-.hero:hover img {
+.hero:hover .hero-img {
   transform: scale(1.05);
 }
 
-.overlay {
+.hero-overlay {
   position: absolute;
   inset: 0;
   display: flex;
@@ -124,6 +158,11 @@ h2 {
   text-align: center;
   padding: 0 1rem;
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+
+.hero-overlay h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 /* Grid & Cards */
@@ -208,4 +247,70 @@ h2 {
   font-size: 0.9rem;
   color: var(--text);
   user-select: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    height: 40vh;
+  }
+
+  /* Show hamburger */
+  .nav-toggle {
+    display: block;
+  }
+
+  /* Hide nav by default on mobile */
+  .nav {
+    position: absolute;
+    top: 60px; /* height of header */
+    right: 1rem;
+    background: var(--bg-alt);
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+    flex-direction: column;
+    display: none;
+    width: 200px;
+  }
+
+  /* Show nav when open */
+  .nav.open {
+    display: flex;
+  }
+
+  .nav a {
+    margin: 0;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav a:last-child {
+    border-bottom: none;
+  }
+
+  /* Stack header items vertically */
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .hero-overlay h2 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Hamburger animation for toggle button */
+.nav-toggle.open .hamburger {
+  background-color: transparent;
+}
+
+.nav-toggle.open .hamburger::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.nav-toggle.open .hamburger::after {
+  transform: rotate(-45deg);
+  top: 0;
 }

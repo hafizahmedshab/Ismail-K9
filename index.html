@@ -13,6 +13,12 @@
         <img src="img/logo.png" alt="Guardian Canines Logo" />
         <span class="site-title">Guardian Canines</span>
       </div>
+
+      <!-- Hamburger button -->
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+
       <nav class="nav">
         <a href="index.html" class="active">Home</a>
         <a href="about.html">About</a>
@@ -25,7 +31,7 @@
   </header>
 
   <section class="hero">
-    <img class="hero-img" src="img/banner.png" alt="Protection dog in action" />
+    <img class="hero-img" src="img/K9 CONTROL HQ.png" alt="Protection dog in action" />
     <div class="hero-overlay">
       <h2>Elite Protection Dogs & Training</h2>
       <p>Where loyalty meets unmatched skill.</p>
@@ -84,5 +90,17 @@
   <footer class="site-footer">
     <p>&copy; 2025 Guardian Canines. All rights reserved.</p>
   </footer>
+
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.nav');
+
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
+      navToggle.setAttribute('aria-expanded', !expanded);
+      nav.classList.toggle('open');
+      navToggle.classList.toggle('open');
+    });
+  </script>
 </body>
 </html>

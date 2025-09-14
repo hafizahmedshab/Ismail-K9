@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Training & Packages – Guardian Canines</title>
   <link rel="stylesheet" href="css/packages.css" />
 </head>
@@ -13,6 +13,11 @@
         <img src="img/logo.png" alt="Guardian Canines Logo" />
         <span class="site-title">Guardian Canines</span>
       </div>
+
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+
       <nav class="nav">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -24,19 +29,16 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
   <section class="hero">
-    <img src="img/banner.png" alt="Dog in training stance" />
-    <div class="overlay">
-      <h1>Training & Packages</h1>
+    <img class="hero-img" src="img/draco.jpg" alt="Dog in training stance" />
+    <div class="hero-overlay">
+      <h2>Training & Packages</h2>
       <p>From professional training programs to elite protection packages—choose what fits your dog best.</p>
     </div>
   </section>
 
   <main class="container">
-
-    <!-- Training Programs Section (from training.html) -->
-    <section id="training-programs">
+    <section>
       <h2>Professional Training Programs</h2>
       <div class="grid">
         <div class="card">
@@ -58,10 +60,7 @@
       </div>
     </section>
 
-    <hr style="margin: 4rem 0; border-color: var(--border);" />
-
-    <!-- Training Packages Section (from packages.html) -->
-    <section id="training-packages">
+    <section class="section-gap">
       <h2>Obedience Training Packages</h2>
       <div class="grid">
         <div class="card">
@@ -86,8 +85,10 @@
           </ul>
         </div>
       </div>
+    </section>
 
-      <h2 class="section-gap" style="margin-top: 3rem;">Protection Training Packages</h2>
+    <section class="section-gap">
+      <h2>Protection Training Packages</h2>
       <div class="grid">
         <div class="card">
           <h3>Level 1 – Foundation</h3>
@@ -116,11 +117,22 @@
         <a class="cta" href="contact.html">Schedule a Free Evaluation</a>
       </div>
     </section>
-
   </main>
 
   <footer class="site-footer">
     <p>&copy; 2025 Guardian Canines. All rights reserved.</p>
   </footer>
+
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.nav');
+
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
+      navToggle.setAttribute('aria-expanded', !expanded);
+      nav.classList.toggle('open');
+      navToggle.classList.toggle('open');
+    });
+  </script>
 </body>
 </html>

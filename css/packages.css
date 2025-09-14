@@ -1,16 +1,13 @@
-/* ==== Base Dark Theme Variables ==== */
 :root {
-  --bg: #1e1f23;
-  --bg-alt: #2a2b30;
-  --text: #e4e4e6;
-  --accent: #10a37f;
-  --card: #2e2f35;
-  --border: #444;
-  --shadow: rgba(0, 0, 0, 0.6);
+  --bg: white;
+  --bg-alt: white;;
+  --text: black;
+  --accent: #dfae2a;
+  --card: #ffffff;
+  --border: #d8d8d8;
   --transition-speed: 0.3s;
 }
 
-/* ==== Reset & Box Sizing ==== */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -18,23 +15,15 @@
 }
 
 body {
-  background-color: var(--bg);
+  background: var(--bg);
   color: var(--text);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   line-height: 1.6;
-  min-height: 100vh;
 }
 
-/* ==== Links ==== */
 a {
   color: var(--accent);
   text-decoration: none;
-  transition: color var(--transition-speed);
-}
-a:hover,
-a:focus {
-  color: #0d8e6e;
-  outline: none;
 }
 
 /* ==== Header ==== */
@@ -55,6 +44,7 @@ a:focus {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .branding {
@@ -89,29 +79,58 @@ a:focus {
   outline: none;
 }
 
-/* ==== Hero Section ==== */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  position: relative;
+  z-index: 150;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  display: block;
+  background-color: var(--accent);
+  height: 3px;
+  width: 25px;
+  border-radius: 2px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.hamburger::before {
+  top: -8px;
+}
+
+.hamburger::after {
+  top: 8px;
+}
+
+/* ==== Hero ==== */
 .hero {
   position: relative;
   height: 60vh;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.hero img {
+.hero-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.45);
-  transition: transform 15s ease-in-out;
+  filter: brightness(0.5);
 }
 
-.hero:hover img {
-  transform: scale(1.05);
-}
-
-.overlay {
+.hero-overlay {
   position: absolute;
   inset: 0;
   display: flex;
@@ -121,117 +140,73 @@ a:focus {
   color: #fff;
   text-align: center;
   padding: 0 1rem;
-  background: rgba(0, 0, 0, 0.35);
 }
 
-.overlay h1 {
-  font-size: 2.8rem;
-  font-weight: 700;
+.hero-overlay h2 {
+  font-size: 2.5rem;
   margin-bottom: 0.5rem;
-  text-shadow: 0 2px 6px var(--shadow);
 }
 
-.overlay p {
-  font-size: 1.3rem;
-  max-width: 600px;
-  text-shadow: 0 1px 4px var(--shadow);
-}
-
-/* ==== Main Container ==== */
+/* ==== Layout ==== */
 .container {
   max-width: 1100px;
-  margin: 3rem auto 4rem auto;
+  margin: 3rem auto;
   padding: 0 1rem;
-}
-
-/* Section Headers */
-h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: #fff;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 0 1px 3px var(--shadow);
 }
 
 .section-gap {
   margin-top: 4rem;
 }
 
-/* ==== Grid Layout ==== */
+/* ==== Grid & Cards ==== */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.8rem;
-  margin-top: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
-/* ==== Cards ==== */
 .card {
-  background-color: var(--card);
-  padding: 1.8rem 1.6rem;
-  border-radius: 14px;
+  background: var(--card);
+  padding: 1.5rem;
+  border-radius: 12px;
   border: 1px solid var(--border);
-  box-shadow: 0 6px 12px var(--shadow);
-  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-  cursor: default;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card:hover,
-.card:focus-within {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0, 163, 127, 0.45);
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 163, 127, 0.5);
 }
 
 .card h3 {
   color: var(--accent);
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   margin-bottom: 1rem;
-  font-weight: 700;
 }
 
 .card ul {
   list-style: disc inside;
-  color: var(--text);
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
-.card ul li {
-  margin-bottom: 0.6rem;
-  line-height: 1.4;
-}
-
-/* ==== Horizontal Divider ==== */
-hr {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 4rem 0;
-  opacity: 0.5;
-}
-
-/* ==== Call to Action Button ==== */
+/* ==== CTA ==== */
 .cta {
   display: inline-block;
   margin-top: 2.5rem;
   padding: 0.9rem 2rem;
   background-color: var(--accent);
   color: #fff;
-  font-weight: 700;
-  font-size: 1.15rem;
+  font-weight: bold;
+  font-size: 1.1rem;
   border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(16, 163, 127, 0.7);
-  transition: background-color 0.25s ease, box-shadow 0.25s ease;
   text-align: center;
-  user-select: none;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.cta:hover,
-.cta:focus {
+.cta:hover {
   background-color: #0d8e6e;
-  box-shadow: 0 10px 20px rgba(13, 142, 110, 0.9);
-  outline: none;
-  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(13, 142, 110, 0.6);
 }
 
 /* ==== Footer ==== */
@@ -242,43 +217,30 @@ hr {
   border-top: 1px solid var(--border);
   color: var(--text);
   font-size: 0.9rem;
-  user-select: none;
 }
 
-/* ==== Responsive Adjustments ==== */
+/* ==== Responsive ==== */
 @media (max-width: 768px) {
-  .overlay h1 {
-    font-size: 2rem;
-  }
-
-  .overlay p {
-    font-size: 1rem;
-    max-width: 90%;
-  }
-
-  .nav a {
-    margin-left: 0.7rem;
-    font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
+  .nav-toggle {
+    display: block;
   }
 
   .nav {
-    margin-top: 1rem;
+    display: none;
     width: 100%;
+    flex-direction: column;
+    margin-top: 1rem;
+  }
+
+  .nav.open {
+    display: flex;
   }
 
   .nav a {
-    display: inline-block;
-    margin: 0.25rem 0.6rem 0.25rem 0;
+    margin: 0.5rem 0;
   }
 
-  .grid {
-    grid-template-columns: 1fr;
+  .hero-overlay h2 {
+    font-size: 2rem;
   }
 }

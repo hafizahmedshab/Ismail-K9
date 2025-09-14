@@ -2,17 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About Us – Guardian Canines</title>
   <link rel="stylesheet" href="css/about.css" />
 </head>
 <body>
-  <header class="site-header">
+<header class="site-header">
     <div class="header-inner">
       <div class="branding">
         <img src="img/logo.png" alt="Guardian Canines Logo" />
         <span class="site-title">Guardian Canines</span>
       </div>
+
+      <!-- Hamburger button -->
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+
       <nav class="nav">
         <a href="index.html">Home</a>
         <a href="about.html" class="active">About</a>
@@ -69,20 +75,26 @@
       <div class="grid">
         <div class="card team-member">
           <img src="img/trainer1.jpg" alt="Ismail Osman – Lead Trainer" />
-          <h4>Ismail Osman – Lead Trainer</h4>
+          <h4 style="color: black">Ismail Osman – Lead Trainer</h4>
           <p>Jiu-jitsu athlete turned canine trainer. Specializes in obedience and protection work with a calm, focused approach.</p>
         </div>
-        <!-- <div class="card team-member">
-          <img src="img/trainer2.jpg" alt="Alex Rivera – K9 Specialist" />
-          <h4>Alex Rivera – K9 Specialist</h4>
-          <p>Background in law enforcement and patrol K9 units. Passionate about building dogs that are dependable in high-pressure situations.</p>
-        </div>
-      </div> -->
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <p>&copy; 2025 Guardian Canines. All rights reserved.</p>
   </footer>
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.nav');
+
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
+      navToggle.setAttribute('aria-expanded', !expanded);
+      nav.classList.toggle('open');
+      navToggle.classList.toggle('open');
+    });
+  </script>
 </body>
 </html>
